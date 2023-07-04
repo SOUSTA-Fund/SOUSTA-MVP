@@ -281,7 +281,7 @@ export class Dapp extends React.Component {
   async _getTokenData() {
     const name = await this._token.name()
     const symbol = await this._token.symbol()
-    let numTokens = await this._factory.tokenCount()
+    let numTokens = await this._factory.getNumberOfTokens()
     numTokens = parseInt(numTokens['_hex'], 16)
 
     this.setState({ tokenData: { name, symbol, numTokens } })
