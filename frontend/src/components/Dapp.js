@@ -288,6 +288,12 @@ export class Dapp extends React.Component {
     let numTokens = await this._factory.getNumberOfTokens()
     numTokens = parseInt(numTokens['_hex'], 16)
 
+    if (numTokens) {
+      for (let i = 0; i < numTokens; i++) {
+        tokenAddresses.push(await this._factory.getTokenAddress(i))
+      }
+    }
+
     this.setState({ tokenData: { name, symbol, numTokens, tokenAddresses } })
   }
 
