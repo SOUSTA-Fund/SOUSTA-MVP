@@ -6,6 +6,7 @@ import { ethers } from 'ethers'
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
 import TokenArtifact from '../contracts/Token.json'
+import FactoryArtifact from '../contracts/Factory.json'
 import contractAddress from '../contracts/contract-address.json'
 
 // All the logic of this dapp is contained in the Dapp component.
@@ -14,6 +15,8 @@ import contractAddress from '../contracts/contract-address.json'
 import { NoWalletDetected } from './NoWalletDetected'
 import { ConnectWallet } from './ConnectWallet'
 import { Loading } from './Loading'
+import { Mint } from './Mint'
+import { TokenData } from './TokenData'
 import { Transfer } from './Transfer'
 import { TransactionErrorMessage } from './TransactionErrorMessage'
 import { WaitingForTransactionMessage } from './WaitingForTransactionMessage'
@@ -131,7 +134,7 @@ export class Dapp extends React.Component {
         </div>
 
         <div className="row">
-          <div className="col-12">
+          <div className="col-6">
             {/*
               If the user has no tokens, we don't show the Transfer form
             */}
@@ -140,19 +143,37 @@ export class Dapp extends React.Component {
             )}
 
             {/*
+              This component displays a form that the user can use to mint a
+              new token.
+              The component doesn't have logic, it just calls the deployToken
+              callback.
+            */}
+            {this.state.balance.gt(0) && (
+              <Mint
+                deployToken={(name, ticker, supply) =>
+                  this._deployToken(name, ticker, supply)
+                }
+                tokenSymbol={this.state.tokenData.symbol}
+              />
+            )}
+
+            {/*
               This component displays a form that the user can use to send a
               transaction and transfer some tokens.
               The component doesn't have logic, it just calls the transferTokens
               callback.
             */}
-            {this.state.balance.gt(0) && (
+            {/* {this.state.balance.gt(0) && (
               <Transfer
                 transferTokens={(to, amount) =>
                   this._transferTokens(to, amount)
                 }
                 tokenSymbol={this.state.tokenData.symbol}
               />
-            )}
+            )} */}
+          </div>
+          <div className="col-6">
+            <TokenData numTokens={this.state.tokenData.numTokens} />
           </div>
         </div>
       </div>
@@ -219,11 +240,19 @@ export class Dapp extends React.Component {
     // We first initialize ethers by creating a provider using window.ethereum
     this._provider = new ethers.providers.Web3Provider(window.ethereum)
 
-    // Then, we initialize the contract using that provider and the token's
-    // artifact. You can do this same thing with your contracts.
+    // We initialize the token contract using that provider and the token's
+    // artifact.
     this._token = new ethers.Contract(
       contractAddress.Token,
       TokenArtifact.abi,
+      this._provider.getSigner(0),
+    )
+
+    // Then, we initialize the factory contract using that provider and the
+    // factory's artifact.
+    this._factory = new ethers.Contract(
+      contractAddress.Factory,
+      FactoryArtifact.abi,
       this._provider.getSigner(0),
     )
   }
@@ -252,14 +281,19 @@ export class Dapp extends React.Component {
   async _getTokenData() {
     const name = await this._token.name()
     const symbol = await this._token.symbol()
+    let numTokens = await this._factory.tokenCount()
+    numTokens = parseInt(numTokens['_hex'], 16)
 
-    this.setState({ tokenData: { name, symbol } })
+    this.setState({ tokenData: { name, symbol, numTokens } })
   }
 
   async _updateBalance() {
     const balance = await this._token.balanceOf(this.state.selectedAddress)
     this.setState({ balance })
   }
+
+  // This method sends an ethereum transaction to mint a token.
+  async _deployToken(name, ticker, supply) {}
 
   // This method sends an ethereum transaction to transfer tokens.
   // While this action is specific to this application, it illustrates how to
