@@ -5,6 +5,7 @@ import { ethers } from 'ethers'
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
+import Erc20Artifact from '../vendor/contracts/ERC20.json'
 import TokenArtifact from '../contracts/Token.json'
 import FactoryArtifact from '../contracts/Factory.json'
 import contractAddress from '../contracts/contract-address.json'
@@ -175,7 +176,7 @@ export class Dapp extends React.Component {
           <div className="col-6">
             <TokenData
               numTokens={this.state.tokenData.numTokens}
-              tokenAddresses={this.state.tokenData.tokenAddresses}
+              tokens={this.state.tokenData.tokens}
             />
           </div>
         </div>
@@ -284,17 +285,36 @@ export class Dapp extends React.Component {
   async _getTokenData() {
     const name = await this._token.name()
     const symbol = await this._token.symbol()
-    const tokenAddresses = []
+    const tokens = {}
     let numTokens = await this._factory.getNumberOfTokens()
     numTokens = parseInt(numTokens['_hex'], 16)
 
     if (numTokens) {
       for (let i = 0; i < numTokens; i++) {
-        tokenAddresses.push(await this._factory.getTokenAddress(i))
+        const address = await this._factory.getTokenAddress(i)
+        const token = new ethers.Contract(
+          address,
+          Erc20Artifact.abi,
+          this._provider.getSigner(0),
+        )
+
+        const name = await token.name()
+        const symbol = await token.symbol()
+        let totalSupply = await token.totalSupply()
+        totalSupply = parseInt(totalSupply['_hex'], 16)
+
+        tokens[address] = {
+          contract: token,
+          name,
+          symbol,
+          totalSupply,
+        }
       }
     }
 
-    this.setState({ tokenData: { name, symbol, numTokens, tokenAddresses } })
+    this.setState({
+      tokenData: { name, symbol, numTokens, tokens },
+    })
   }
 
   async _updateBalance() {
