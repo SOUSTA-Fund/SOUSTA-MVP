@@ -6,7 +6,6 @@ import { ethers } from 'ethers'
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
 import Erc20Artifact from '../vendor/contracts/ERC20.json'
-import TokenArtifact from '../contracts/Token.json'
 import FactoryArtifact from '../contracts/Factory.json'
 import contractAddress from '../contracts/contract-address.json'
 
@@ -84,9 +83,8 @@ export class Dapp extends React.Component {
       )
     }
 
-    // If the token data or the user's balance hasn't loaded yet, we show
-    // a loading component.
-    if (!this.state.tokenData || !this.state.balance) {
+    // If the token data hasn't loaded yet, we show a loading component.
+    if (!this.state.tokenData) {
       return <Loading />
     }
 
@@ -95,15 +93,9 @@ export class Dapp extends React.Component {
       <div className="container p-4">
         <div className="row">
           <div className="col-12">
-            <h1>
-              {this.state.tokenData.name} ({this.state.tokenData.symbol})
-            </h1>
+            <h1>SOUSTA Asset Tokenization Platform</h1>
             <p>
-              Welcome <b>{this.state.selectedAddress}</b>, you have{' '}
-              <b>
-                {this.state.balance.toString()} {this.state.tokenData.symbol}
-              </b>
-              .
+              Welcome <b>{this.state.selectedAddress}</b>.
             </p>
           </div>
         </div>
@@ -137,26 +129,17 @@ export class Dapp extends React.Component {
         <div className="row">
           <div className="col-6">
             {/*
-              If the user has no tokens, we don't show the Transfer form
-            */}
-            {this.state.balance.eq(0) && (
-              <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )}
-
-            {/*
               This component displays a form that the user can use to mint a
               new token.
               The component doesn't have logic, it just calls the deployToken
               callback.
             */}
-            {this.state.balance.gt(0) && (
-              <Mint
-                deployToken={(name, ticker, supply) =>
-                  this._deployToken(name, ticker, supply)
-                }
-                tokenSymbol={this.state.tokenData.symbol}
-              />
-            )}
+            <Mint
+              deployToken={(name, ticker, supply) =>
+                this._deployToken(name, ticker, supply)
+              }
+              tokenSymbol={this.state.tokenData.symbol}
+            />
 
             {/*
               This component displays a form that the user can use to send a
@@ -244,14 +227,6 @@ export class Dapp extends React.Component {
     // We first initialize ethers by creating a provider using window.ethereum
     this._provider = new ethers.providers.Web3Provider(window.ethereum)
 
-    // We initialize the token contract using that provider and the token's
-    // artifact.
-    this._token = new ethers.Contract(
-      contractAddress.Token,
-      TokenArtifact.abi,
-      this._provider.getSigner(0),
-    )
-
     // Then, we initialize the factory contract using that provider and the
     // factory's artifact.
     this._factory = new ethers.Contract(
@@ -283,8 +258,6 @@ export class Dapp extends React.Component {
   // The next two methods just read from the contract and store the results
   // in the component state.
   async _getTokenData() {
-    const name = await this._token.name()
-    const symbol = await this._token.symbol()
     const tokens = {}
     let numTokens = await this._factory.getNumberOfTokens()
     numTokens = parseInt(numTokens['_hex'], 16)
@@ -313,14 +286,11 @@ export class Dapp extends React.Component {
     }
 
     this.setState({
-      tokenData: { name, symbol, numTokens, tokens },
+      tokenData: { numTokens, tokens },
     })
   }
 
-  async _updateBalance() {
-    const balance = await this._token.balanceOf(this.state.selectedAddress)
-    this.setState({ balance })
-  }
+  async _updateBalance() {}
 
   // This method sends a transaction to mint a token.
   async _deployToken(name, ticker, supply) {

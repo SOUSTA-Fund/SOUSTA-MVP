@@ -22,16 +22,6 @@ async function main() {
 
   console.log('Account balance:', (await deployer.getBalance()).toString())
 
-  const Token = await ethers.getContractFactory('Token')
-  const token = await Token.deploy(
-    'SOUSTA Asset Token',
-    'SOU',
-    '1000000000000000000',
-  )
-  await token.deployed()
-
-  console.log('Token address:', token.address)
-
   const Factory = await ethers.getContractFactory('Factory')
   const factory = await Factory.deploy()
   await factory.deployed()
@@ -39,10 +29,10 @@ async function main() {
   console.log('Factory address:', factory.address)
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token, factory)
+  saveFrontendFiles(factory)
 }
 
-function saveFrontendFiles(token, factory) {
+function saveFrontendFiles(factory) {
   const fs = require('fs')
   const contractsDir = path.join(
     __dirname,
@@ -58,20 +48,11 @@ function saveFrontendFiles(token, factory) {
 
   fs.writeFileSync(
     path.join(contractsDir, 'contract-address.json'),
-    JSON.stringify(
-      { Token: token.address, Factory: factory.address },
-      undefined,
-      2,
-    ),
+    JSON.stringify({ Factory: factory.address }, undefined, 2),
   )
 
-  const TokenArtifact = artifacts.readArtifactSync('Token')
   const FactoryArtifact = artifacts.readArtifactSync('Factory')
 
-  fs.writeFileSync(
-    path.join(contractsDir, 'Token.json'),
-    JSON.stringify(TokenArtifact, null, 2),
-  )
   fs.writeFileSync(
     path.join(contractsDir, 'Factory.json'),
     JSON.stringify(FactoryArtifact, null, 2),
