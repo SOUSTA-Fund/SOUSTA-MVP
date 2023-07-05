@@ -10,7 +10,7 @@ export function TokenData({ numTokens, tokens }) {
       {!!addresses.length && (
         <ul className="list-group">
           {addresses.map((address) => (
-            <li className="list-group-item">
+            <li className="list-group-item" key={address}>
               <h5>Token Name: {tokens[address]['name']}</h5>
               <div>Symbol: {tokens[address]['symbol']}</div>
               <div>Total Supply: {tokens[address]['totalSupply']}</div>
