@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "MVP for the SOUSTA Asset Tokenization platform.",
   "scripts": {
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "new-rsktestnet-seed-phrase": "hardhat run scripts/setup-seed-phrase.js --network rsktestnet"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@typechain/ethers-v5": "^10.1.0",
     "@typechain/hardhat": "^6.1.2",
     "@types/mocha": ">=9.1.0",
+    "bip39": "^3.1.0",
     "chai": "^4.3.7",
     "ethers": "^5.7.2",
     "hardhat": "^2.12.5",
