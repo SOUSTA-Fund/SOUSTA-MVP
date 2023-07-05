@@ -45,7 +45,7 @@ export class Dapp extends React.Component {
     // We store multiple things in Dapp's state.
     // You don't need to follow this pattern, but it's an useful example.
     this.initialState = {
-      // The info of the token (i.e. It's Name and symbol)
+      // Token info (i.e. Number of tokens deployed, contract addresses, etc.)
       tokenData: undefined,
       // The user's address and balance
       selectedAddress: undefined,
@@ -138,7 +138,6 @@ export class Dapp extends React.Component {
               deployToken={(name, ticker, supply) =>
                 this._deployToken(name, ticker, supply)
               }
-              tokenSymbol={this.state.tokenData.symbol}
             />
 
             {/*
@@ -152,7 +151,6 @@ export class Dapp extends React.Component {
                 transferTokens={(to, amount) =>
                   this._transferTokens(to, amount)
                 }
-                tokenSymbol={this.state.tokenData.symbol}
               />
             )} */}
           </div>
