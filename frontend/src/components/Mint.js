@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Mint({ deployToken, tokenSymbol }) {
+export function Mint({ deployToken }) {
   return (
     <div>
       <h4>Mint SOUSTA Token</h4>
@@ -29,7 +29,7 @@ export function Mint({ deployToken, tokenSymbol }) {
           <input className="form-control" type="text" name="ticker" required />
         </div>
         <div className="form-group">
-          <label>Initial Supply of {tokenSymbol}</label>
+          <label>Initial Token Supply</label>
           <input
             className="form-control"
             type="number"
