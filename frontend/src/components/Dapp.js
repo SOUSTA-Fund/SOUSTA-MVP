@@ -25,6 +25,9 @@ import { NoTokensMessage } from './NoTokensMessage'
 // This is the default id used by the Hardhat Network
 const HARDHAT_NETWORK_ID = '31337'
 
+// This is the default id used by the Rootstock Test Network
+const ROOTSTOCK_TEST_NETWORK_ID = 31
+
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001
 
@@ -422,7 +425,8 @@ export class Dapp extends React.Component {
   }
 
   async _switchChain() {
-    const chainIdHex = `0x${HARDHAT_NETWORK_ID.toString(16)}`
+    const chainIdHex = `0x${ROOTSTOCK_TEST_NETWORK_ID.toString(16)}`
+
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: chainIdHex }],
