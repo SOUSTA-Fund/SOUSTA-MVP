@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTwitter,
@@ -9,48 +6,10 @@ import {
   faLinkedin,
   faGithub,
 } from '@fortawesome/free-brands-svg-icons'
-import { providers } from 'ethers'
-import WalletConnectProvider from '@walletconnect/web3-provider'
-
-const rpcUrls = {
-  30: 'https://public-node.rsk.co',
-  31: 'https://public-node.testnet.rsk.co',
-}
-
-const supportedChains = Object.keys(rpcUrls).map(Number)
-
-const infoOptions = {
-  30: { addressBaseURL: 'https://explorer.rsk.co/address/' },
-  31: { addressBaseURL: 'https://explorer.testnet.rsk.co/address/' },
-}
+import './walletconnect'
+import WalletConnect from './walletconnect'
 
 export default function Home() {
-  const [accountData, setAccountData] = useState({ signer: '' })
-
-  const login = (RLogin) => {
-    const rLogin = new RLogin({
-      providerOptions: {
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            rpc: rpcUrls,
-          },
-        },
-      },
-      rpcUrls,
-      supportedChains,
-      infoOptions,
-    })
-
-    rLogin.connect().then(({ provider, disconnect }) => {
-      const newProvider = new providers.Web3Provider(provider)
-      newProvider
-        .getSigner(0)
-        .getAddress()
-        .then((signer) => console.log(signer))
-    })
-  }
-
   return (
     <>
       <div className="z-10 w-full items-center justify-between text-sm flex px-24">
@@ -105,15 +64,7 @@ export default function Home() {
           </h2>
         </div>
         <div>
-          <button
-            onClick={async () => {
-              const RLogin = (await import('@rsksmart/rlogin')).default
-              login(RLogin)
-            }}
-            className="bg-zinc-800 px-8 py-4 rounded text-white dark:bg-white dark:text-zinc-800"
-          >
-            Connect Wallet
-          </button>
+          <WalletConnect />
         </div>
 
         <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
