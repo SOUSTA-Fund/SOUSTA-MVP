@@ -1,17 +1,54 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 export default function DashboardLayout({ children }) {
+  const pathname = usePathname()
+  const activeClass =
+    'text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800'
+  const inActiveClass = 'text-gray-500 dark:text-gray-200 hover:text-blue-500'
+  const linkPaths = {
+    home: '/',
+    overview: '/dashboard/overview',
+    tokens: '/dashboard/tokens',
+    mint: '/dashboard/mint',
+    settings: '/dashboard/settings',
+  }
+
   return (
     <main className="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-2xl">
       <div className="flex items-start justify-between">
         <div className="relative hidden h-screen my-4 ml-4 shadow-lg lg:block w-80">
-          <div className="h-full bg-white rounded-2xl dark:bg-gray-700">
-            <div className="flex items-center justify-center pt-6">SOUSTA</div>
+          <div className="h-full bg-white pt-6 rounded-2xl dark:bg-gray-700">
             <nav className="mt-6">
               <div>
                 <Link
-                  className="flex items-center justify-start w-full p-4 my-2 font-thin text-blue-500 uppercase transition-colors duration-200 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
-                  href="/dashboard/overview"
+                  className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
+                    pathname === linkPaths.home ? activeClass : inActiveClass
+                  }`}
+                  href={linkPaths.home}
+                >
+                  <span className="text-left">
+                    <svg
+                      width="20"
+                      height="20"
+                      fill="currentColor"
+                      viewBox="0 0 2048 1792"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
+                    </svg>
+                  </span>
+                  <span className="mx-4 text-sm font-normal">SOUSTA</span>
+                </Link>
+                <Link
+                  className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
+                    pathname === linkPaths.overview
+                      ? activeClass
+                      : inActiveClass
+                  }`}
+                  href={linkPaths.overview}
                 >
                   <span className="text-left">
                     <svg
@@ -27,8 +64,10 @@ export default function DashboardLayout({ children }) {
                   <span className="mx-4 text-sm font-normal">Overview</span>
                 </Link>
                 <Link
-                  className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
-                  href="/dashboard/tokens"
+                  className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
+                    pathname === linkPaths.tokens ? activeClass : inActiveClass
+                  }`}
+                  href={linkPaths.tokens}
                 >
                   <span className="text-left">
                     <svg
@@ -45,8 +84,10 @@ export default function DashboardLayout({ children }) {
                   <span className="mx-4 text-sm font-normal">Tokens</span>
                 </Link>
                 <Link
-                  className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
-                  href="/dashboard/mint"
+                  className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
+                    pathname === linkPaths.mint ? activeClass : inActiveClass
+                  }`}
+                  href={linkPaths.mint}
                 >
                   <span className="text-left">
                     <svg
@@ -63,8 +104,12 @@ export default function DashboardLayout({ children }) {
                   <span className="mx-4 text-sm font-normal">Mint</span>
                 </Link>
                 <Link
-                  className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
-                  href="/dashboard/settings"
+                  className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
+                    pathname === linkPaths.settings
+                      ? activeClass
+                      : inActiveClass
+                  }`}
+                  href={linkPaths.settings}
                 >
                   <span className="text-left">
                     <svg
