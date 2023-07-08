@@ -50,9 +50,7 @@ export default function WalletConnect() {
           })
       })
     } else {
-      rLogin.disconnect().then(({ provider, disconnect }) => {
-        Cookies.remove('signer')
-      })
+      router.push('/dashboard/overview')
     }
   }
 
