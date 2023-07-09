@@ -60,7 +60,7 @@ export default function WalletConnect() {
         const RLogin = (await import('@rsksmart/rlogin')).default
         login(RLogin)
       }}
-      className="bg-zinc-800 px-8 py-4 rounded text-white dark:bg-white dark:text-zinc-800"
+      className="bg-zinc-800 font-semibold px-8 py-4 rounded text-white dark:bg-white dark:text-zinc-800"
     >
       Connect Wallet
     </button>

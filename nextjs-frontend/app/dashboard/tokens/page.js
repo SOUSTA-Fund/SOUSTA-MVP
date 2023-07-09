@@ -104,7 +104,7 @@ export default function Tokens() {
                 <div>
                   <a
                     href=""
-                    className="bg-zinc-800 inline-block px-6 py-2 rounded-md text-white"
+                    className="bg-zinc-800 font-semibold inline-block px-6 py-2 rounded-md text-white dark:bg-white dark:text-zinc-800"
                   >
                     Interact With {tokenData.tokens[address]['symbol']}
                   </a>

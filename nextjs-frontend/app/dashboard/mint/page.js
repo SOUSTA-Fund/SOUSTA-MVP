@@ -66,7 +66,7 @@ export default function Mint() {
                   </div>
                   <div className="">
                     <input
-                      className="flex items-center px-6 py-2 font-semibold hover:cursor-pointer text-white bg-zinc-800 rounded-md"
+                      className="flex items-center px-6 py-2 font-semibold hover:cursor-pointer text-white bg-zinc-800 rounded-md dark:bg-white dark:text-zinc-800"
                       type="submit"
                       value="Mint"
                     />
