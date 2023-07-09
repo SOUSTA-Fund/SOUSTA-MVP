@@ -6,7 +6,6 @@ import {
   faLinkedin,
   faGithub,
 } from '@fortawesome/free-brands-svg-icons'
-import './walletconnect'
 import WalletConnect from './walletconnect'
 
 export default function Home() {
