@@ -81,16 +81,26 @@ export default function Tokens() {
                       </span>
                     </div>
                   </div>
-                  <div className="mb-2">
+                  <div className="border-b-2 border-gray-100 mb-2 pb-2">
                     <span className="text-gray-500 mr-2 text-sm">
                       Total Supply
                     </span>{' '}
                     {tokenData.tokens[address]['totalSupply']}
                   </div>
-                  <div className="mb-4 text-sm">
+                  <div className="border-b-2 border-gray-100 mb-2 pb-2 text-sm">
                     <span className="text-gray-500 mr-2">Contract Address</span>
                     <br />
                     <p className="font-mono truncate">{address}</p>
+                  </div>
+                  <div className="mb-4">
+                    <a
+                      href={`https://explorer.testnet.rsk.co/address/${address}`}
+                      className="underline"
+                      target="_blank"
+                    >
+                      View {tokenData.tokens[address]['symbol']} on Rootstock
+                      Explorer
+                    </a>
                   </div>
                   <div>
                     <a
