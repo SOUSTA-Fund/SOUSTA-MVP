@@ -7,15 +7,21 @@ import {
   faCoins,
   faEye,
   faGear,
-  faHouse,
+  faPowerOff,
   faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  Card,
+  Typography,
+  List,
+  ListItem,
+  ListItemPrefix,
+} from '@material-tailwind/react'
 
 export default function Nav() {
   const pathname = usePathname()
   const activeClass =
-    'text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800'
-  const inActiveClass = 'text-gray-500 dark:text-gray-200 hover:text-blue-500'
+    'text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800 focus:text-blue-500'
   const linkPaths = {
     home: '/',
     overview: '/dashboard/overview',
@@ -25,65 +31,76 @@ export default function Nav() {
   }
 
   return (
-    <nav className="mt-6">
-      <Link
-        className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
-          pathname === linkPaths.home ? activeClass : inActiveClass
-        }`}
-        href={linkPaths.home}
-      >
-        <span className="text-left">
-          <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faHouse} />
-        </span>
-        <span className="mx-4 text-sm font-normal">SOUSTA</span>
-      </Link>
-      <Link
-        className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
-          pathname === linkPaths.overview ? activeClass : inActiveClass
-        }`}
-        href={linkPaths.overview}
-      >
-        <span className="text-left">
-          <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faEye} />
-        </span>
-        <span className="mx-4 text-sm font-normal">Overview</span>
-      </Link>
-      <Link
-        className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
-          pathname === linkPaths.tokens ? activeClass : inActiveClass
-        }`}
-        href={linkPaths.tokens}
-      >
-        <span className="text-left">
-          <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faCoins} />
-        </span>
-        <span className="mx-4 text-sm font-normal">Tokens</span>
-      </Link>
-      <Link
-        className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
-          pathname === linkPaths.mint ? activeClass : inActiveClass
-        }`}
-        href={linkPaths.mint}
-      >
-        <span className="text-left">
-          <FontAwesomeIcon
-            style={{ height: 20, width: 20 }}
-            icon={faScrewdriverWrench}
-          />
-        </span>
-        <span className="mx-4 text-sm font-normal">Mint</span>
-      </Link>
-      <Link
-        className={`flex items-center justify-start w-full p-4 my-2 font-thin uppercase transition-colors duration-200 ${
-          pathname === linkPaths.settings ? activeClass : inActiveClass
-        }`}
-        href={linkPaths.settings}
-      >
-        <span className="text-left">
-          <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faGear} />
-        </span>
-        <span className="mx-4 text-sm font-normal">Settings</span>
-      </Link>
-    </nav>
+    <Card className="h-screen mt-4 ml-4 p-4 w-80">
+      <div className="mb-2 p-4">
+        <Typography variant="paragraph" color="blue-gray">
+          SOUSTA
+        </Typography>
+      </div>
+      <List>
+        <Link href={linkPaths.overview}>
+          <ListItem
+            className={`${pathname === linkPaths.overview && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faEye} />
+            </ListItemPrefix>
+            Overview
+          </ListItem>
+        </Link>
+
+        <Link href={linkPaths.tokens}>
+          <ListItem
+            className={`${pathname === linkPaths.tokens && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faCoins}
+              />
+            </ListItemPrefix>
+            Tokens
+          </ListItem>
+        </Link>
+
+        <Link href={linkPaths.mint}>
+          <ListItem className={`${pathname === linkPaths.mint && activeClass}`}>
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faScrewdriverWrench}
+              />
+            </ListItemPrefix>
+            Mint
+          </ListItem>
+        </Link>
+
+        <Link href={linkPaths.settings}>
+          <ListItem
+            className={`${pathname === linkPaths.settings && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faGear}
+              />
+            </ListItemPrefix>
+            Settings
+          </ListItem>
+        </Link>
+
+        <Link href={linkPaths.home}>
+          <ListItem>
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faPowerOff}
+              />
+            </ListItemPrefix>
+            Log Out
+          </ListItem>
+        </Link>
+      </List>
+    </Card>
   )
 }
