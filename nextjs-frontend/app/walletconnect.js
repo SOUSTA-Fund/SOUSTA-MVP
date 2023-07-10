@@ -4,6 +4,7 @@ import { providers } from 'ethers'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import routes from './routes'
 
 const rpcUrls = {
   30: 'https://public-node.rsk.co',
@@ -46,11 +47,11 @@ export default function WalletConnect() {
           .getAddress()
           .then((signer) => {
             Cookies.set('signer', signer, { expires: 1 })
-            router.push('/dashboard/overview')
+            router.push(routes.tokens)
           })
       })
     } else {
-      router.push('/dashboard/overview')
+      router.push(routes.tokens)
     }
   }
 
@@ -60,7 +61,7 @@ export default function WalletConnect() {
         const RLogin = (await import('@rsksmart/rlogin')).default
         login(RLogin)
       }}
-      className="bg-zinc-800 font-semibold px-8 py-4 rounded text-white dark:bg-white dark:text-zinc-800"
+      className="bg-gray-900 font-semibold px-8 py-4 rounded text-white dark:bg-white dark:text-gray-900"
     >
       Connect Wallet
     </button>

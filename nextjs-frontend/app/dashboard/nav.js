@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import routes from '../routes'
 import {
   faCoins,
   faEye,
@@ -22,13 +23,6 @@ export default function Nav() {
   const pathname = usePathname()
   const activeClass =
     'text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800 focus:text-blue-500'
-  const linkPaths = {
-    home: '/',
-    overview: '/dashboard/overview',
-    tokens: '/dashboard/tokens',
-    mint: '/dashboard/mint',
-    settings: '/dashboard/settings',
-  }
 
   return (
     <Card className="h-screen mt-4 ml-4 p-4 w-80">
@@ -38,9 +32,9 @@ export default function Nav() {
         </Typography>
       </div>
       <List>
-        <Link href={linkPaths.overview}>
+        <Link href={routes.overview}>
           <ListItem
-            className={`${pathname === linkPaths.overview && activeClass}`}
+            className={`${pathname === routes.overview && activeClass}`}
           >
             <ListItemPrefix>
               <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faEye} />
@@ -49,10 +43,8 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={linkPaths.tokens}>
-          <ListItem
-            className={`${pathname === linkPaths.tokens && activeClass}`}
-          >
+        <Link href={routes.tokens}>
+          <ListItem className={`${pathname === routes.tokens && activeClass}`}>
             <ListItemPrefix>
               <FontAwesomeIcon
                 style={{ height: 20, width: 20 }}
@@ -63,8 +55,8 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={linkPaths.mint}>
-          <ListItem className={`${pathname === linkPaths.mint && activeClass}`}>
+        <Link href={routes.mint}>
+          <ListItem className={`${pathname === routes.mint && activeClass}`}>
             <ListItemPrefix>
               <FontAwesomeIcon
                 style={{ height: 20, width: 20 }}
@@ -75,9 +67,9 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={linkPaths.settings}>
+        <Link href={routes.settings}>
           <ListItem
-            className={`${pathname === linkPaths.settings && activeClass}`}
+            className={`${pathname === routes.settings && activeClass}`}
           >
             <ListItemPrefix>
               <FontAwesomeIcon
@@ -89,7 +81,7 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={linkPaths.home}>
+        <Link href={routes.home}>
           <ListItem>
             <ListItemPrefix>
               <FontAwesomeIcon
