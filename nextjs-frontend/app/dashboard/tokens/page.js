@@ -10,6 +10,7 @@ import {
   CardBody,
   CardFooter,
   Chip,
+  Spinner,
 } from '@material-tailwind/react'
 
 import Erc20Artifact from '../../../contracts/vendor/ERC20.json'
@@ -19,6 +20,7 @@ import contractAddress from '../../../contracts/compiled/contract-address.json'
 export default function Tokens() {
   const [factory, setFactory] = useState()
   const [provider, setProvider] = useState()
+  const [tokensLoading, setTokensLoading] = useState(false)
   const [tokenData, setTokenData] = useState({ numTokens: 0, tokens: {} })
 
   useEffect(() => {
@@ -66,12 +68,17 @@ export default function Tokens() {
   const addresses = Object.keys(tokenData.tokens)
 
   return (
-    <div>
+    <>
+      {!addresses.length && (
+        <div className="flex h-full items-center justify-center">
+          <Spinner className="h-16 w-16" />
+        </div>
+      )}
       {!!addresses.length && (
         <ul className="grid grid-cols-3 gap-4">
           {addresses.map((address) => (
             <li key={address}>
-              <Card>
+              <Card className="h-full justify-between">
                 <CardBody>
                   <div className="flex font-bold items-center mb-4 text-xl">
                     <FontAwesomeIcon
@@ -126,6 +133,6 @@ export default function Tokens() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   )
 }
