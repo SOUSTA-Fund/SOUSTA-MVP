@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+import Link from 'next/link'
+import routes from '../../routes'
+import { useDashboardContext } from '../store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -13,59 +14,8 @@ import {
   Spinner,
 } from '@material-tailwind/react'
 
-import Erc20Artifact from '../../../contracts/vendor/ERC20.json'
-import FactoryArtifact from '../../../contracts/compiled/Factory.json'
-import contractAddress from '../../../contracts/compiled/contract-address.json'
-
 export default function Tokens() {
-  const [factory, setFactory] = useState()
-  const [provider, setProvider] = useState()
-  const [tokensLoading, setTokensLoading] = useState(false)
-  const [tokenData, setTokenData] = useState({ numTokens: 0, tokens: {} })
-
-  useEffect(() => {
-    async function init() {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-
-      const factory = new ethers.Contract(
-        contractAddress.Factory,
-        FactoryArtifact.abi,
-        provider.getSigner(0),
-      )
-
-      const tokens = {}
-      let numTokens = await factory.getNumberOfTokens()
-      numTokens = parseInt(numTokens['_hex'], 16)
-
-      if (numTokens) {
-        for (let i = 0; i < numTokens; i++) {
-          const address = await factory.getTokenAddress(i)
-          const token = new ethers.Contract(
-            address,
-            Erc20Artifact.abi,
-            provider.getSigner(0),
-          )
-
-          const name = await token.name()
-          const symbol = await token.symbol()
-          let totalSupply = await token.totalSupply()
-          totalSupply = parseInt(totalSupply['_hex'], 16)
-
-          tokens[address] = {
-            contract: token,
-            name,
-            symbol,
-            totalSupply,
-          }
-        }
-      }
-
-      setTokenData({ numTokens, tokens })
-    }
-    init()
-  }, [])
-
-  const addresses = Object.keys(tokenData.tokens)
+  const { addresses, tokenData } = useDashboardContext()
 
   return (
     <>
@@ -118,14 +68,11 @@ export default function Tokens() {
                 </CardBody>
                 <CardFooter className="pt-0">
                   <div>
-                    <a
-                      href=""
-                      className="bg-zinc-800 font-semibold inline-block"
-                    >
+                    <Link href={`${routes.tokens}/${address}`}>
                       <Button>
                         Interact With {tokenData.tokens[address]['symbol']}
                       </Button>
-                    </a>
+                    </Link>
                   </div>
                 </CardFooter>
               </Card>

@@ -1,9 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
-import FactoryArtifact from '../../../contracts/compiled/Factory.json'
-import contractAddress from '../../../contracts/compiled/contract-address.json'
+import { useState } from 'react'
+import { useDashboardContext } from '../store'
 import {
   Alert,
   Card,
@@ -14,28 +12,14 @@ import {
 } from '@material-tailwind/react'
 
 export default function Mint() {
-  const [provider, setProvider] = useState()
-  const [factory, setFactory] = useState()
+  const { factory } = useDashboardContext()
+
   const [transactionError, setTransactionError] = useState()
   const [transactionSuccess, setTransactionSuccess] = useState(false)
   const [txBeingSent, setTxBeingSent] = useState()
 
   // This is an error code that indicates the user canceled a transaction
   const ERROR_CODE_TX_REJECTED_BY_USER = 4001
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const factory = new ethers.Contract(
-        contractAddress.Factory,
-        FactoryArtifact.abi,
-        provider.getSigner(0),
-      )
-
-      setProvider(provider)
-      setFactory(factory)
-    }
-  }, [])
 
   const deployToken = async (name, ticker, supply) => {
     try {
