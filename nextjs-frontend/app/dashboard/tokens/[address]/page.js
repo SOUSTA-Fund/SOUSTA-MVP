@@ -14,8 +14,8 @@ import {
 
 export default function Page({ params }) {
   const { address } = params
-  const { tokenData } = useDashboardContext()
-  const token = tokenData.tokens[address]
+  const { tokens } = useDashboardContext()
+  const token = tokens[address]
   console.log(token)
 
   return (

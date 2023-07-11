@@ -15,7 +15,7 @@ import {
 } from '@material-tailwind/react'
 
 export default function Tokens() {
-  const { addresses, tokenData } = useDashboardContext()
+  const { addresses, tokens } = useDashboardContext()
 
   return (
     <>
@@ -36,10 +36,10 @@ export default function Tokens() {
                       icon={faBitcoin}
                     />
                     <div className="flex flex-col items-start ml-4">
-                      <span>{tokenData.tokens[address]['name']}</span>
+                      <span>{tokens[address]['name']}</span>
                       <Chip
                         size="sm"
-                        value={tokenData.tokens[address]['symbol']}
+                        value={tokens[address]['symbol']}
                         variant="ghost"
                       />
                     </div>
@@ -48,7 +48,7 @@ export default function Tokens() {
                     <span className="text-gray-500 mr-2 text-sm">
                       Total Supply
                     </span>{' '}
-                    {tokenData.tokens[address]['totalSupply']}
+                    {tokens[address]['totalSupply']}
                   </div>
                   <div className="border-b-2 border-gray-100 mb-2 pb-2 text-sm">
                     <span className="text-gray-500 mr-2">Contract Address</span>
@@ -61,17 +61,14 @@ export default function Tokens() {
                       className="underline"
                       target="_blank"
                     >
-                      View {tokenData.tokens[address]['symbol']} on Rootstock
-                      Explorer
+                      View {tokens[address]['symbol']} on Rootstock Explorer
                     </a>
                   </div>
                 </CardBody>
                 <CardFooter className="pt-0">
                   <div>
                     <Link href={`${routes.tokens}/${address}`}>
-                      <Button>
-                        Interact With {tokenData.tokens[address]['symbol']}
-                      </Button>
+                      <Button>Interact With {tokens[address]['symbol']}</Button>
                     </Link>
                   </div>
                 </CardFooter>

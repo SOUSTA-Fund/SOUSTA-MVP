@@ -10,7 +10,9 @@ const DashboardContext = createContext()
 
 export const DashboardContextProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([])
-  const [tokenData, setTokenData] = useState({ numTokens: 0, tokens: {} })
+  const [numTokens, setNumTokens] = useState(0)
+  const [updatedNumTokens, setUpdatedNumTokens] = useState(0)
+  const [tokens, setTokens] = useState({})
 
   const provider = new ethers.providers.Web3Provider(window.ethereum)
   const factory = new ethers.Contract(
@@ -20,14 +22,26 @@ export const DashboardContextProvider = ({ children }) => {
   )
 
   useEffect(() => {
-    updateTokens()
+    const pollDataInterval = setInterval(() => updateNumTokens(), 15000)
+
+    return () => {
+      clearInterval(pollDataInterval)
+    }
   }, [])
 
-  const getTokens = async (numTokens) => {
+  useEffect(() => {
+    const hasNumberOfTokensChanged = updatedNumTokens !== numTokens
+
+    if (hasNumberOfTokensChanged) {
+      getTokens()
+    }
+  }, [updatedNumTokens])
+
+  const getTokens = async () => {
     setAddresses([])
     const tokens = {}
 
-    for (let i = 0; i < numTokens; i++) {
+    for (let i = 0; i < updatedNumTokens; i++) {
       const address = await factory.getTokenAddress(i)
       const token = new ethers.Contract(
         address,
@@ -49,23 +63,18 @@ export const DashboardContextProvider = ({ children }) => {
     }
 
     setAddresses(Object.keys(tokens))
-    setTokenData({ numTokens, tokens })
+    setNumTokens(updatedNumTokens)
+    setTokens(tokens)
   }
 
-  const updateTokens = async () => {
-    let numTokens = await factory.getNumberOfTokens()
-    numTokens = parseInt(numTokens['_hex'], 16)
-    const hasNumberOfTokensChanged = numTokens !== tokenData.numTokens
-
-    if (hasNumberOfTokensChanged) {
-      getTokens(numTokens)
-    }
+  const updateNumTokens = async () => {
+    let updatedNumTokens = await factory.getNumberOfTokens()
+    updatedNumTokens = parseInt(updatedNumTokens['_hex'], 16)
+    setUpdatedNumTokens(updatedNumTokens)
   }
 
   return (
-    <DashboardContext.Provider
-      value={{ addresses, factory, tokenData, updateTokens }}
-    >
+    <DashboardContext.Provider value={{ addresses, factory, tokens }}>
       {children}
     </DashboardContext.Provider>
   )
