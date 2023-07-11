@@ -73,6 +73,7 @@ export const GlobalContextProvider = ({ children }) => {
   const logout = async () => {
     await disconnect
     setSigner(null)
+    router.push(routes.home)
   }
 
   return (
@@ -81,11 +82,6 @@ export const GlobalContextProvider = ({ children }) => {
         login,
         logout,
         signer,
-        setSigner,
-        rLogin,
-        setrLogin,
-        disconnect,
-        setDisconnect,
       }}
     >
       {children}
