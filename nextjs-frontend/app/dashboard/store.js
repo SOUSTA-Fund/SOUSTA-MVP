@@ -10,55 +10,62 @@ const DashboardContext = createContext()
 
 export const DashboardContextProvider = ({ children }) => {
   const [addresses, setAddresses] = useState([])
-  const [factory, setFactory] = useState()
   const [tokenData, setTokenData] = useState({ numTokens: 0, tokens: {} })
 
-  useEffect(() => {
-    async function init() {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
+  const provider = new ethers.providers.Web3Provider(window.ethereum)
+  const factory = new ethers.Contract(
+    contractAddress.Factory,
+    FactoryArtifact.abi,
+    provider.getSigner(0),
+  )
 
-      const factory = new ethers.Contract(
-        contractAddress.Factory,
-        FactoryArtifact.abi,
+  useEffect(() => {
+    updateTokens()
+  }, [])
+
+  const getTokens = async (numTokens) => {
+    setAddresses([])
+    const tokens = {}
+
+    for (let i = 0; i < numTokens; i++) {
+      const address = await factory.getTokenAddress(i)
+      const token = new ethers.Contract(
+        address,
+        Erc20Artifact.abi,
         provider.getSigner(0),
       )
 
-      const tokens = {}
-      let numTokens = await factory.getNumberOfTokens()
-      numTokens = parseInt(numTokens['_hex'], 16)
+      const name = await token.name()
+      const symbol = await token.symbol()
+      let totalSupply = await token.totalSupply()
+      totalSupply = parseInt(totalSupply['_hex'], 16)
 
-      if (numTokens) {
-        for (let i = 0; i < numTokens; i++) {
-          const address = await factory.getTokenAddress(i)
-          const token = new ethers.Contract(
-            address,
-            Erc20Artifact.abi,
-            provider.getSigner(0),
-          )
-
-          const name = await token.name()
-          const symbol = await token.symbol()
-          let totalSupply = await token.totalSupply()
-          totalSupply = parseInt(totalSupply['_hex'], 16)
-
-          tokens[address] = {
-            contract: token,
-            name,
-            symbol,
-            totalSupply,
-          }
-        }
+      tokens[address] = {
+        contract: token,
+        name,
+        symbol,
+        totalSupply,
       }
-
-      setAddresses(Object.keys(tokens))
-      setFactory(factory)
-      setTokenData({ numTokens, tokens })
     }
-    init()
-  }, [])
+
+    setAddresses(Object.keys(tokens))
+    setTokenData({ numTokens, tokens })
+  }
+
+  const updateTokens = async () => {
+    let numTokens = await factory.getNumberOfTokens()
+    numTokens = parseInt(numTokens['_hex'], 16)
+    const hasNumberOfTokensChanged = numTokens !== tokenData.numTokens
+
+    if (hasNumberOfTokensChanged) {
+      getTokens(numTokens)
+    }
+  }
 
   return (
-    <DashboardContext.Provider value={{ addresses, factory, tokenData }}>
+    <DashboardContext.Provider
+      value={{ addresses, factory, tokenData, updateTokens }}
+    >
       {children}
     </DashboardContext.Provider>
   )
