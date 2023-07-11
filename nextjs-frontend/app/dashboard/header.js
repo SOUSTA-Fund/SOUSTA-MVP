@@ -1,20 +1,12 @@
 'use client'
 
-import Cookies from 'js-cookie'
-import { useEffect, useState } from 'react'
+import { useGlobalContext } from '../context/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardBody } from '@material-tailwind/react'
 
 export default function Header() {
-  const [signer, setSigner] = useState('')
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const signer = Cookies.get('signer')
-      setSigner(signer)
-    }
-  }, [])
+  const { signer } = useGlobalContext()
 
   return (
     <header>

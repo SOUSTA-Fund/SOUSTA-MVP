@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useGlobalContext } from '../context/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import routes from '../routes'
 import {
@@ -20,6 +21,7 @@ import {
 } from '@material-tailwind/react'
 
 export default function Nav() {
+  const { logout } = useGlobalContext()
   const pathname = usePathname()
   const activeClass =
     'text-blue-500 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800 focus:text-blue-500'
@@ -81,7 +83,7 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={routes.home}>
+        <button onClick={() => logout()}>
           <ListItem>
             <ListItemPrefix>
               <FontAwesomeIcon
@@ -91,7 +93,7 @@ export default function Nav() {
             </ListItemPrefix>
             Log Out
           </ListItem>
-        </Link>
+        </button>
       </List>
     </Card>
   )
