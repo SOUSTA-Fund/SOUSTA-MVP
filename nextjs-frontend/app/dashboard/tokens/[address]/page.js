@@ -13,10 +13,39 @@ import {
 } from '@material-tailwind/react'
 
 export default function Page({ params }) {
+  const [transactionError, setTransactionError] = useState()
+
   const { address } = params
   const { tokens } = useDashboardContext()
   const token = tokens[address]
-  console.log(token)
+
+  // This is an error code that indicates the user canceled a transaction
+  const ERROR_CODE_TX_REJECTED_BY_USER = 4001
+
+  const getBalance = async (address) => {
+    try {
+      console.log(address)
+      setTransactionError(null)
+
+      const tx = await token.contract.balanceOf(address)
+      console.log(parseInt(tx['_hex'], 16))
+
+      const receipt = await tx.wait()
+    } catch (e) {
+      setTransactionError(e)
+    }
+  }
+
+  const onGetBalance = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target.form)
+    const address = formData.get('address')
+
+    if (address) {
+      getBalance(address)
+    }
+  }
 
   return (
     <>
@@ -49,7 +78,7 @@ export default function Page({ params }) {
                   <Input size="lg" label="Address" name="address" required />
                 </div>
                 <div className="">
-                  <Button>Get Balance</Button>
+                  <Button onClick={onGetBalance}>Get Balance</Button>
                 </div>
               </form>
             </CardBody>
