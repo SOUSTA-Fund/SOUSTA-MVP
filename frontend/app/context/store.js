@@ -18,6 +18,7 @@ const GlobalContext = createContext()
 const rpcUrls = {
   30: 'https://public-node.rsk.co',
   31: 'https://public-node.testnet.rsk.co',
+  31337: 'http://localhost:8545',
 }
 
 const supportedChains = Object.keys(rpcUrls).map(Number)
