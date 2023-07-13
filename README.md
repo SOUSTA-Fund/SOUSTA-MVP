@@ -61,3 +61,40 @@ To run the Hardhat test suite to test the contracts:
 ```sh
 yarn run test
 ```
+
+## Next.js Dapp
+
+The `frontend` directory has the Dapp to interact with the contracts, built
+using [Next.js](https://nextjs.org/).
+
+### Running the Dapp
+
+The Dapp uses [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+To run it, you just need to execute `yarn run dev` in the `frontend` directory
+in a terminal, and open [http://localhost:3000](http://localhost:3000).
+
+### Architecture of the Dapp
+
+The Dapp consists of multiple React Components, which you can find in
+`frontend/app`.
+
+Most of them are presentational components.
+
+The logic for connecting [Metamask](https://metamask.io) to the Rootstock
+network and maintaining global state is in `frontend/app/context/store.js`.
+
+The main logic for interacting with the contracts and maintaining dashboard
+state is in `frontend/app/dashboard/store.js`.
+
+There's also logic for minting tokens in `frontend/app/dashboard/mint/page.js`,
+and interacting with minted tokens in
+`frontend/app/dashboard/tokens/[address]/page.js`.
+
+The contract addresses and ABI's are in the `frontend/contracts/compiled`
+directory. They are compiled and copied to this directory when you run either
+of the Hardhat deploy scripts above.
+
+The `frontend/contracts/vendor` directory contains the ABI for interacting
+with the ERC20 token. It's here because it's not compiled by Hardhat and needs
+to live in the repository.
