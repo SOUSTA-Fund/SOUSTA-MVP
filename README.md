@@ -91,10 +91,13 @@ There's also logic for minting tokens in `frontend/app/dashboard/mint/page.js`,
 and interacting with minted tokens in
 `frontend/app/dashboard/tokens/[address]/page.js`.
 
+### Contracts
+
 The contract addresses and ABI's are in the `frontend/contracts/compiled`
 directory. They are compiled and copied to this directory when you run either
 of the Hardhat deploy scripts above.
 
 The `frontend/contracts/vendor` directory contains the ABI for interacting
-with the ERC20 token. It's here because it's not compiled by Hardhat and needs
-to live in the repository.
+with the ERC20 token. It's an [OpenZeppelin ERC20 token contract](https://docs.openzeppelin.com/contracts/4.x/erc20)
+and is here because it isn't compiled by Hardhat. So it needs to live in the
+repository.
