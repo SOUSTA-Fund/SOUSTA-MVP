@@ -62,6 +62,12 @@ To run the Hardhat test suite to test the contracts:
 yarn run test
 ```
 
+To generate a test coverage report:
+
+```sh
+yarn run coverage
+```
+
 ## Next.js Dapp
 
 The `frontend` directory has the Dapp to interact with the contracts, built
