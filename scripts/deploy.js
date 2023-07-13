@@ -38,8 +38,8 @@ function saveFrontendFiles(factory) {
     __dirname,
     '..',
     'frontend',
-    'src',
     'contracts',
+    'compiled',
   )
 
   if (!fs.existsSync(contractsDir)) {
