@@ -54,6 +54,22 @@ If you deployed to the Rootstock test network you'll need to
 Then you'll need to go to the [RSK Faucet](https://faucet.rsk.co/) to get
 tRBTC to use for testing.
 
+## Seed phrases
+
+To make sure we use the same wallet for the Rootstock test network and
+[Metamask](https://metamask.io); either copy the seed phrase from Metamask
+into a file named `.rsktestnet-seed-phrase` in the root directory of this
+repository.
+
+Or run:
+
+```sh
+yarn run new-rsktestnet-seed-phrase
+```
+
+Then copy the seed phrase from the `.rsktestnet-seed-phrase` file and import
+the account into Metamask.
+
 ## Testing
 
 To run the Hardhat test suite to test the contracts:
