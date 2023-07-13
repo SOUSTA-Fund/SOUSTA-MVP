@@ -1,13 +1,6 @@
 'use client'
 
-import {
-  createContext,
-  Dispatch,
-  useContext,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { providers } from 'ethers'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import routes from '../routes'
@@ -32,9 +25,11 @@ export const GlobalContextProvider = ({ children }) => {
   const [signer, setSigner] = useState()
   const [rLogin, setrLogin] = useState()
   const [disconnect, setDisconnect] = useState()
-
   const router = useRouter()
 
+  /**
+   * Setup rLogin.
+   */
   useEffect(() => {
     async function init() {
       const RLogin = (await import('@rsksmart/rlogin')).default
@@ -57,6 +52,9 @@ export const GlobalContextProvider = ({ children }) => {
     init()
   }, [])
 
+  /**
+   * Connect wallet and set signer address in state.
+   */
   const login = () => {
     rLogin.connect().then(({ provider, disconnect }) => {
       setDisconnect(disconnect)
@@ -71,6 +69,9 @@ export const GlobalContextProvider = ({ children }) => {
     })
   }
 
+  /**
+   * Disconnect wallet and remove signer address.
+   */
   const logout = async () => {
     await disconnect
     setSigner(null)
