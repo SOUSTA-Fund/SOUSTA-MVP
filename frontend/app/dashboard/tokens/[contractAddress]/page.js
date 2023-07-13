@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useDashboardContext } from '../../store'
 import {
   Button,
@@ -13,37 +12,18 @@ import {
 } from '@material-tailwind/react'
 
 export default function Page({ params }) {
-  const [transactionError, setTransactionError] = useState()
-
-  const { address } = params
-  const { tokens } = useDashboardContext()
-  const token = tokens[address]
-
-  // This is an error code that indicates the user canceled a transaction
-  const ERROR_CODE_TX_REJECTED_BY_USER = 4001
-
-  const getBalance = async (address) => {
-    try {
-      console.log(address)
-      setTransactionError(null)
-
-      const tx = await token.contract.balanceOf(address)
-      console.log(parseInt(tx['_hex'], 16))
-
-      const receipt = await tx.wait()
-    } catch (e) {
-      setTransactionError(e)
-    }
-  }
+  const { contractAddress } = params
+  const { getBalanceAtAddress, tokens } = useDashboardContext()
+  const token = tokens[contractAddress]
 
   const onGetBalance = (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target.form)
-    const address = formData.get('address')
+    const walletAddress = formData.get('walletAddress')
 
-    if (address) {
-      getBalance(address)
+    if (walletAddress) {
+      getBalanceAtAddress(contractAddress, walletAddress)
     }
   }
 
@@ -71,11 +51,16 @@ export default function Page({ params }) {
               <form>
                 <div className="flex flex-col mb-4">
                   <span className="font-bold">
-                    Get {token.symbol} Balance at Address
+                    Get {token.symbol} balance at wallet address
                   </span>
                 </div>
                 <div className="mb-4 flex flex-col gap-6">
-                  <Input size="lg" label="Address" name="address" required />
+                  <Input
+                    size="lg"
+                    label="Wallet Address"
+                    name="walletAddress"
+                    required
+                  />
                 </div>
                 <div className="">
                   <Button onClick={onGetBalance}>Get Balance</Button>

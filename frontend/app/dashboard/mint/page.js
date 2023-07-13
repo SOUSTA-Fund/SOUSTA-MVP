@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { useDashboardContext } from '../store'
 import {
   Alert,
@@ -12,47 +11,15 @@ import {
 } from '@material-tailwind/react'
 
 export default function Mint() {
-  const { factory } = useDashboardContext()
-
-  const [transactionError, setTransactionError] = useState()
-  const [transactionSuccess, setTransactionSuccess] = useState(false)
-  const [txBeingSent, setTxBeingSent] = useState()
-
-  // This is an error code that indicates the user canceled a transaction
-  const ERROR_CODE_TX_REJECTED_BY_USER = 4001
-
-  const deployToken = async (name, ticker, supply) => {
-    try {
-      setTransactionError(null)
-
-      const tx = await factory.deployToken(name, ticker, supply)
-      setTxBeingSent(tx.hash)
-
-      const receipt = await tx.wait()
-
-      if (receipt.status === 0) {
-        throw new Error('Transaction failed')
-      }
-
-      setTransactionSuccess(true)
-    } catch (e) {
-      if (e.code === ERROR_CODE_TX_REJECTED_BY_USER) {
-        return
-      }
-
-      setTransactionError(e)
-    } finally {
-      setTxBeingSent(null)
-    }
-  }
-
-  const getRpcErrorMessage = (error) => {
-    if (error.data) {
-      return error.data.message
-    }
-
-    return error.message
-  }
+  const {
+    deployToken,
+    getRpcErrorMessage,
+    transactionError,
+    setTransactionError,
+    transactionSuccess,
+    setTransactionSuccess,
+    txBeingSent,
+  } = useDashboardContext()
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -97,7 +64,7 @@ export default function Mint() {
           className="mb-4"
           color="green"
           open={transactionSuccess}
-          onClose={() => setTransactionSuccess(false)}
+          onClose={() => setTransactionSuccess(null)}
         >
           Transaction <span className="font-bold">{txBeingSent}</span> mined
           successfully.

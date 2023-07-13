@@ -15,19 +15,19 @@ import {
 } from '@material-tailwind/react'
 
 export default function Tokens() {
-  const { addresses, tokens } = useDashboardContext()
+  const { contractAddresses, tokens } = useDashboardContext()
 
   return (
     <>
-      {!addresses.length && (
+      {!contractAddresses.length && (
         <div className="flex h-full items-center justify-center">
           <Spinner className="h-16 w-16" />
         </div>
       )}
-      {!!addresses.length && (
+      {!!contractAddresses.length && (
         <ul className="grid grid-cols-3 gap-4">
-          {addresses.map((address) => (
-            <li key={address}>
+          {contractAddresses.map((contractAddress) => (
+            <li key={contractAddress}>
               <Card className="h-full justify-between">
                 <CardBody>
                   <div className="flex font-bold items-center mb-4 text-xl">
@@ -36,10 +36,10 @@ export default function Tokens() {
                       icon={faBitcoin}
                     />
                     <div className="flex flex-col items-start ml-4">
-                      <span>{tokens[address]['name']}</span>
+                      <span>{tokens[contractAddress]['name']}</span>
                       <Chip
                         size="sm"
-                        value={tokens[address]['symbol']}
+                        value={tokens[contractAddress]['symbol']}
                         variant="ghost"
                       />
                     </div>
@@ -48,27 +48,30 @@ export default function Tokens() {
                     <span className="text-gray-500 mr-2 text-sm">
                       Total Supply
                     </span>{' '}
-                    {tokens[address]['totalSupply']}
+                    {tokens[contractAddress]['totalSupply']}
                   </div>
                   <div className="border-b-2 border-gray-100 mb-2 pb-2 text-sm">
                     <span className="text-gray-500 mr-2">Contract Address</span>
                     <br />
-                    <p className="font-mono truncate">{address}</p>
+                    <p className="font-mono truncate">{contractAddress}</p>
                   </div>
                   <div className="mb-4">
                     <a
-                      href={`https://explorer.testnet.rsk.co/address/${address}`}
+                      href={`https://explorer.testnet.rsk.co/address/${contractAddress}`}
                       className="underline"
                       target="_blank"
                     >
-                      View {tokens[address]['symbol']} on Rootstock Explorer
+                      View {tokens[contractAddress]['symbol']} on Rootstock
+                      Explorer
                     </a>
                   </div>
                 </CardBody>
                 <CardFooter className="pt-0">
                   <div>
-                    <Link href={`${routes.tokens}/${address}`}>
-                      <Button>Interact With {tokens[address]['symbol']}</Button>
+                    <Link href={`${routes.tokens}/${contractAddress}`}>
+                      <Button>
+                        Interact With {tokens[contractAddress]['symbol']}
+                      </Button>
                     </Link>
                   </div>
                 </CardFooter>

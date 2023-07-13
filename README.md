@@ -106,12 +106,9 @@ Most of them are presentational components.
 The logic for connecting [Metamask](https://metamask.io) to the Rootstock
 network and maintaining global state is in `frontend/app/context/store.js`.
 
-The main logic for interacting with the contracts and maintaining dashboard
-state is in `frontend/app/dashboard/store.js`.
-
-There's also logic for minting tokens in `frontend/app/dashboard/mint/page.js`,
-and interacting with minted tokens in
-`frontend/app/dashboard/tokens/[address]/page.js`.
+The logic for interacting with the contracts and maintaining dashboard
+state is in `frontend/app/dashboard/store.js`. All dashboard components
+use functions and state from this file.
 
 ### Contracts
 
