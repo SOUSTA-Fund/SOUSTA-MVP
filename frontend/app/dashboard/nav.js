@@ -5,10 +5,11 @@ import Link from 'next/link'
 import { useGlobalContext } from '../context/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import routes from '../routes'
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
 import {
   faCoins,
-  faEye,
   faGear,
+  faPersonThroughWindow,
   faPowerOff,
   faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons'
@@ -34,17 +35,6 @@ export default function Nav() {
         </Typography>
       </div>
       <List>
-        <Link href={routes.overview}>
-          <ListItem
-            className={`${pathname === routes.overview && activeClass}`}
-          >
-            <ListItemPrefix>
-              <FontAwesomeIcon style={{ height: 20, width: 20 }} icon={faEye} />
-            </ListItemPrefix>
-            Overview
-          </ListItem>
-        </Link>
-
         <Link href={routes.tokens}>
           <ListItem className={`${pathname === routes.tokens && activeClass}`}>
             <ListItemPrefix>
@@ -66,6 +56,34 @@ export default function Nav() {
               />
             </ListItemPrefix>
             Mint
+          </ListItem>
+        </Link>
+
+        <Link href={routes.pegInOut}>
+          <ListItem
+            className={`${pathname === routes.pegInOut && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faBitcoin}
+              />
+            </ListItemPrefix>
+            Peg-In/Out
+          </ListItem>
+        </Link>
+
+        <Link href={routes.transparency}>
+          <ListItem
+            className={`${pathname === routes.transparency && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faPersonThroughWindow}
+              />
+            </ListItemPrefix>
+            Transparency
           </ListItem>
         </Link>
 
