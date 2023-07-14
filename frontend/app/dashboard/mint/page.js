@@ -3,10 +3,12 @@
 import { useDashboardContext } from '../store'
 import {
   Alert,
-  Card,
-  Input,
   Button,
+  Card,
   CardBody,
+  Input,
+  Option,
+  Select,
   Spinner,
 } from '@material-tailwind/react'
 
@@ -87,6 +89,11 @@ export default function Mint() {
                 required
                 type="number"
               />
+              <Select label="Token Type">
+                <Option>Asset Token</Option>
+                <Option>Fund Token</Option>
+                <Option>Third-Party Token</Option>
+              </Select>
             </div>
             <div className="">
               <Button disabled={!!txBeingSent} onClick={onSubmit}>
