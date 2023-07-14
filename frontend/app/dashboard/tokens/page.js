@@ -42,6 +42,7 @@ export default function Tokens() {
                     <CardBody>
                       <div className="flex font-bold items-center mb-4 text-xl">
                         <FontAwesomeIcon
+                          className="text-yellow-700"
                           style={{ height: 44, width: 44 }}
                           icon={faBitcoin}
                         />
@@ -113,6 +114,7 @@ export default function Tokens() {
                     <CardBody>
                       <div className="flex font-bold items-center mb-4 text-xl">
                         <FontAwesomeIcon
+                          className="text-yellow-700"
                           style={{ height: 44, width: 44 }}
                           icon={faBitcoin}
                         />
@@ -184,6 +186,7 @@ export default function Tokens() {
                     <CardBody>
                       <div className="flex font-bold items-center mb-4 text-xl">
                         <FontAwesomeIcon
+                          className="text-yellow-700"
                           style={{ height: 44, width: 44 }}
                           icon={faBitcoin}
                         />

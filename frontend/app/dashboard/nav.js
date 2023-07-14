@@ -46,6 +46,7 @@ export default function Nav() {
           <ListItem className={`${pathname === routes.tokens && activeClass}`}>
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faCoins}
               />
@@ -58,6 +59,7 @@ export default function Nav() {
           <ListItem className={`${pathname === routes.mint && activeClass}`}>
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faScrewdriverWrench}
               />
@@ -72,6 +74,7 @@ export default function Nav() {
           >
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faBitcoin}
               />
@@ -84,6 +87,7 @@ export default function Nav() {
           <ListItem className={`${pathname === routes.fiat && activeClass}`}>
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faDollarSign}
               />
@@ -98,6 +102,7 @@ export default function Nav() {
           >
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faPersonThroughWindow}
               />
@@ -112,6 +117,7 @@ export default function Nav() {
           >
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faGear}
               />
@@ -124,6 +130,7 @@ export default function Nav() {
           <ListItem>
             <ListItemPrefix>
               <FontAwesomeIcon
+                className="text-yellow-700"
                 style={{ height: 20, width: 20 }}
                 icon={faPowerOff}
               />

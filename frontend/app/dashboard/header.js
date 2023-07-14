@@ -38,6 +38,7 @@ export default function Header() {
               </div>
               <a href="#" className="block relative ml-5">
                 <FontAwesomeIcon
+                  className="text-yellow-700"
                   style={{ height: 30, width: 30 }}
                   icon={faUser}
                 />
