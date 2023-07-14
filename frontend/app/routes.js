@@ -1,4 +1,5 @@
 const routes = {
+  fiat: '/dashboard/fiat',
   home: '/',
   mint: '/dashboard/mint',
   pegInOut: '/dashboard/peg-in-out',

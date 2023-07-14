@@ -8,6 +8,7 @@ import routes from '../routes'
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
 import {
   faCoins,
+  faDollarSign,
   faGear,
   faPersonThroughWindow,
   faPowerOff,
@@ -70,6 +71,18 @@ export default function Nav() {
               />
             </ListItemPrefix>
             Peg-In/Out
+          </ListItem>
+        </Link>
+
+        <Link href={routes.fiat}>
+          <ListItem className={`${pathname === routes.fiat && activeClass}`}>
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                style={{ height: 20, width: 20 }}
+                icon={faDollarSign}
+              />
+            </ListItemPrefix>
+            Fiat
           </ListItem>
         </Link>
 
