@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import routes from '../routes'
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
 import {
+  faGraduationCap,
   faCoins,
   faDollarSign,
   faGear,
@@ -108,6 +109,21 @@ export default function Nav() {
               />
             </ListItemPrefix>
             Transparency
+          </ListItem>
+        </Link>
+
+        <Link href={routes.education}>
+          <ListItem
+            className={`${pathname === routes.education && activeClass}`}
+          >
+            <ListItemPrefix>
+              <FontAwesomeIcon
+                className="text-yellow-700"
+                style={{ height: 20, width: 20 }}
+                icon={faGraduationCap}
+              />
+            </ListItemPrefix>
+            Education
           </ListItem>
         </Link>
 

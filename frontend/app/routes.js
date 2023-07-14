@@ -1,4 +1,5 @@
 const routes = {
+  education: '/dashboard/education',
   fiat: '/dashboard/fiat',
   home: '/',
   mint: '/dashboard/mint',
