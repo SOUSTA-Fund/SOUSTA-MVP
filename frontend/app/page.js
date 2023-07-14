@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import {
   faTwitter,
   faInstagram,
@@ -11,8 +12,15 @@ import WalletConnect from './walletconnect'
 export default function Home() {
   return (
     <>
-      <div className="z-10 w-full items-center justify-between text-sm flex px-24">
-        <p className="pb-6 pt-8">SOUSTA</p>
+      <div className="z-10 w-full items-center justify-between text-sm flex px-24 py-6">
+        <div className="flex h-12 items-center relative w-60">
+          <Image
+            className="absolute right-12"
+            src={'/SOUSTA-Logo.svg'}
+            width={240}
+            height={48}
+          />
+        </div>
         <div className="bottom-0 left-0 flex">
           <nav className="flex">
             <a className="pr-2" href="">

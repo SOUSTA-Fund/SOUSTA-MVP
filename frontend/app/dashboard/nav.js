@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useGlobalContext } from '../context/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import routes from '../routes'
@@ -31,9 +32,14 @@ export default function Nav() {
   return (
     <Card className="h-screen mt-4 ml-4 p-4 w-80">
       <div className="mb-2 p-4">
-        <Typography variant="paragraph" color="blue-gray">
-          SOUSTA
-        </Typography>
+        <div className="flex h-12 items-center relative w-48">
+          <Image
+            className="absolute right-10"
+            src={'/SOUSTA-Logo.svg'}
+            width={240}
+            height={48}
+          />
+        </div>
       </div>
       <List>
         <Link href={routes.tokens}>
