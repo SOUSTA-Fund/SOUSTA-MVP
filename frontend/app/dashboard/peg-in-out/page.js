@@ -13,9 +13,9 @@ import {
 
 export default function Overview() {
   return (
-    <div className="flex-col flex font-semibold h-full items-center justify-center">
+    <div className="flex-col flex font-semibold h-full items-center justify-center relative">
       <div
-        className="bg-contain bg-no-repeat h-20 w-60"
+        className="absolute bg-contain bg-no-repeat h-8 left-0 top-0 w-40"
         style={{
           backgroundImage:
             'url("https://app.2wp.rootstock.io/img/logo-rootstock-black.325b665e.png")',
@@ -24,9 +24,9 @@ export default function Overview() {
       ></div>
       <h1 className="mb-8 text-7xl">2-Way Peg App</h1>
       <h2 className="mb-8 text-4xl">Bridging BTC and RBTC</h2>
-      <div className="mb-6">Select your token conversion</div>
+      <div className="mb-8">Select your token conversion</div>
 
-      <div className="flex gap-6">
+      <div className="flex gap-6 mb-8">
         <Card className="">
           <CardBody className="mx-10">
             <div className="flex flex-col items-center">
@@ -94,6 +94,24 @@ export default function Overview() {
           </CardBody>
         </Card>
       </div>
+
+      <div className="mb-8">Or check the status of your transaction</div>
+
+      <Card className="">
+        <CardBody className="mx-10">
+          <div className="flex flex-col items-center">
+            <div
+              className="bg-contain bg-no-repeat h-10 w-14"
+              style={{
+                backgroundImage:
+                  'url("https://app.2wp.rootstock.io/img/status-icon.1d6aefa0.svg"',
+                backgroundPosition: 'center center',
+              }}
+            ></div>
+            <div className="text-sm">Transaction status</div>
+          </div>
+        </CardBody>
+      </Card>
     </div>
   )
 }
