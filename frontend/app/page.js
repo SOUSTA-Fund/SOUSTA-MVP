@@ -1,7 +1,9 @@
 'use client'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import AssetCard from './assetcard'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   Button,
   Card,
@@ -14,6 +16,7 @@ import {
   Typography,
 } from '@material-tailwind/react'
 import {
+  faArrowRight,
   faCoins,
   faHandSparkles,
   faHouseLock,
@@ -25,58 +28,52 @@ import {
   faLinkedin,
   faGithub,
 } from '@fortawesome/free-brands-svg-icons'
+import routes from './routes'
 import WalletConnect from './walletconnect'
 import Nav from './nav'
 
 export default function Home() {
+  const opportunities = [
+    {
+      href: routes.home,
+      title: 'Carried Interest',
+      description:
+        'Invest in the carried interest portion of various Private Equity (PE) General Partnerships.',
+      type: 'Fund of Funds',
+      min: '400 Tokens',
+      expectedYield: '3-4%',
+    },
+    {
+      href: routes.home,
+      title: 'Whiskey',
+      description: 'Invest in rare, limited edition bottles of Whiskey.',
+      type: 'Fund of Funds',
+      min: '400 Tokens',
+      expectedYield: '3-4%',
+    },
+    {
+      href: routes.home,
+      title: 'Aymoré Hotel — Rio',
+      description:
+        'Invest in The historic Aymoré Hotel, built in 1910, that has this name because the founder, Antonio Mendes Campos, had an admiration for Aimorés, an indigenous ethnicity.',
+      type: 'Property Fund',
+      min: '400 Tokens',
+      expectedYield: '3-4%',
+    },
+    {
+      href: routes.home,
+      title: 'The Meadows — Richmond, VA',
+      description:
+        'Invest in The Meadows Investment Properties Portfolio, part of a 19 property portfolio of single family rental portfolio of Section 8 properties.',
+      type: 'Property Fund',
+      min: '400 Tokens',
+      expectedYield: '3-4%',
+    },
+  ]
+
   return (
     <>
       <Nav />
-
-      {/* <div className="z-10 w-full items-center justify-between text-sm flex px-24 py-6">
-        <div className="flex h-12 items-center relative w-60">
-          <Image
-            className="absolute right-12"
-            src={'/SOUSTA-Logo.svg'}
-            width={240}
-            height={48}
-          />
-        </div>
-        <div className="bottom-0 left-0 flex">
-          <nav className="flex">
-            <a className="pr-2" href="">
-              <FontAwesomeIcon
-                style={{ height: 24, width: 24 }}
-                icon={faInstagram}
-              />
-            </a>
-            <a className="px-2" href="">
-              <FontAwesomeIcon
-                style={{ height: 24, width: 24 }}
-                icon={faYoutube}
-              />
-            </a>
-            <a className="px-2" href="">
-              <FontAwesomeIcon
-                style={{ height: 24, width: 24 }}
-                icon={faTwitter}
-              />
-            </a>
-            <a className="px-2" href="">
-              <FontAwesomeIcon
-                style={{ height: 24, width: 24 }}
-                icon={faLinkedin}
-              />
-            </a>
-            <a className="pl-2" href="">
-              <FontAwesomeIcon
-                style={{ height: 24, width: 24 }}
-                icon={faGithub}
-              />
-            </a>
-          </nav>
-        </div>
-      </div> */}
 
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="relative flex flex-col place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
@@ -185,163 +182,21 @@ export default function Home() {
             </h2>
             <h3 className="font-semibold text-5xl">Featured Opportunities</h3>
           </div>
-          <ul className="grid grid-cols-3 gap-8">
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
+          <ul className="grid grid-cols-2 gap-16">
+            {opportunities.map((opportunity) => {
+              return (
+                <li>
+                  <AssetCard
+                    description={opportunity.description}
+                    href={opportunity.href}
+                    title={opportunity.title}
+                    expectedYield={opportunity.expectedYield}
+                    min={opportunity.min}
+                    type={opportunity.type}
                   />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
-            <li>
-              <Card className="overflow-hidden">
-                <CardHeader
-                  floated={false}
-                  shadow={false}
-                  color="transparent"
-                  className="m-0 rounded-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="img-blur-shadow"
-                    layout="fill"
-                  />
-                </CardHeader>
-                <CardBody>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
-                  </Typography>
-                  <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2
-                    min by walk and near to &quot;Naviglio&quot; where you can
-                    enjoy the main night life in Barcelona.
-                  </Typography>
-                </CardBody>
-              </Card>
-            </li>
+                </li>
+              )
+            })}
           </ul>
         </section>
 
