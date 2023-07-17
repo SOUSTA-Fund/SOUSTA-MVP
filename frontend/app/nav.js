@@ -68,8 +68,8 @@ export default function Nav() {
   )
 
   return (
-    <Navbar className="z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <Navbar className="bg-transparent border-none z-10 h-max max-w-full rounded-none shadow-none py-2 px-24">
+      <div className="flex items-center justify-between">
         <Link href={routes.home}>
           <div className="flex h-12 items-center relative w-60">
             <Image
