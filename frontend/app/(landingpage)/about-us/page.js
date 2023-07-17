@@ -1,12 +1,7 @@
-'use client'
-
-import Nav from '../nav'
-
 export default function AboutUs() {
   return (
     <>
-      <Nav></Nav>
-      <main className="flex min-h-screen flex-col items-center justify-between">
+      <main className="flex flex-col items-center justify-between">
         <div className="flex flex-col sm:flex-row mx-auto items-center px-24 py-16 bg-blue-900 dark:bg-gradient-to-t dark:from-lofty-darkest dark:to-lofty-dark w-full">
           <div className="hidden sm:block flex-1">
             <img

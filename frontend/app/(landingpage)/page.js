@@ -28,8 +28,7 @@ import {
   faLinkedin,
   faGithub,
 } from '@fortawesome/free-brands-svg-icons'
-import routes from './routes'
-import Nav from './nav'
+import routes from '../routes'
 
 export default function Home() {
   const opportunities = [
@@ -76,9 +75,7 @@ export default function Home() {
 
   return (
     <>
-      <Nav />
-
-      <main className="flex min-h-screen flex-col items-center justify-between py-24">
+      <main className="flex flex-col items-center justify-between py-24">
         <div className="grid grid-cols-2 relative pb-24 px-24">
           <div>
             <h1 className="font-bold leading-tight mb-4 text-5xl text-blue-900">

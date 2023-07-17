@@ -1,7 +1,7 @@
 'use client'
 
 import { Typography } from '@material-tailwind/react'
-import { useGlobalContext } from './context/store'
+import { useGlobalContext } from '../context/store'
 
 export default function WalletConnect() {
   const { login, logout, signer } = useGlobalContext()

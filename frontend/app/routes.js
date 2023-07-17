@@ -1,6 +1,6 @@
 const routes = {
   aboutUs: '/about-us',
-  education: '/dashboard/education',
+  education: '/education',
   fiat: '/dashboard/fiat',
   home: '/',
   invest: '/invest',
