@@ -10,7 +10,7 @@ export default function Footer() {
     },
     {
       title: 'Resources',
-      links: ['FAQ', 'Education', 'Governance'],
+      links: ['FAQ', 'Education', 'Governance', 'Reporting'],
     },
     {
       title: 'Featured Opportunities',
