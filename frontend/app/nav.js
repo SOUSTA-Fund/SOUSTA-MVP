@@ -65,6 +65,7 @@ export default function Nav() {
           <div className="flex items-center">About Us</div>
         </Typography>
       </Link>
+      <WalletConnect />
     </ul>
   )
 
@@ -90,7 +91,6 @@ export default function Nav() {
           >
             <span>Investor Login</span>
           </Button>
-          <WalletConnect />
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
