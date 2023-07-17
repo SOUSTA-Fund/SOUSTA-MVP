@@ -29,7 +29,6 @@ import {
   faGithub,
 } from '@fortawesome/free-brands-svg-icons'
 import routes from './routes'
-import WalletConnect from './walletconnect'
 import Nav from './nav'
 
 export default function Home() {
@@ -91,9 +90,6 @@ export default function Home() {
           <h2 className="text-2xl">
             Solving the Bitcoin productivity problem.
           </h2>
-        </div>
-        <div>
-          <WalletConnect />
         </div>
 
         <section className="py-20">

@@ -11,6 +11,7 @@ import {
   Navbar,
   Typography,
 } from '@material-tailwind/react'
+import WalletConnect from './walletconnect'
 
 export default function Nav() {
   const [openNav, setOpenNav] = useState(false)
@@ -89,6 +90,7 @@ export default function Nav() {
           >
             <span>Investor Login</span>
           </Button>
+          <WalletConnect />
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

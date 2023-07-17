@@ -1,5 +1,6 @@
 'use client'
 
+import { Typography } from '@material-tailwind/react'
 import { useGlobalContext } from './context/store'
 
 export default function WalletConnect() {
@@ -10,9 +11,17 @@ export default function WalletConnect() {
       onClick={() => {
         !!signer ? logout() : login()
       }}
-      className="bg-gray-900 font-semibold px-8 py-4 rounded text-white dark:bg-white dark:text-gray-900"
     >
-      {!!signer ? 'Disconnect Wallet' : 'Connect Wallet'}
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <div className="flex items-center">
+          {!!signer ? 'Disconnect Wallet' : 'Fund Manager Login'}
+        </div>
+      </Typography>
     </button>
   )
 }
