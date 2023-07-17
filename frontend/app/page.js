@@ -42,6 +42,7 @@ export default function Home() {
       type: 'Fund of Funds',
       min: '400 Tokens',
       expectedYield: '3-4%',
+      src: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2942&q=80',
     },
     {
       href: routes.home,
@@ -50,6 +51,7 @@ export default function Home() {
       type: 'Fund of Funds',
       min: '400 Tokens',
       expectedYield: '3-4%',
+      src: 'https://images.unsplash.com/photo-1615780324244-29b71ae12f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80',
     },
     {
       href: routes.home,
@@ -59,6 +61,7 @@ export default function Home() {
       type: 'Property Fund',
       min: '400 Tokens',
       expectedYield: '3-4%',
+      src: 'https://images.unsplash.com/photo-1678839042013-9d82d24b1d53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2835&q=80',
     },
     {
       href: routes.home,
@@ -68,6 +71,7 @@ export default function Home() {
       type: 'Property Fund',
       min: '400 Tokens',
       expectedYield: '3-4%',
+      src: 'https://images.unsplash.com/photo-1629777161042-4edc28f957ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2873&q=80',
     },
   ]
 
@@ -192,6 +196,7 @@ export default function Home() {
                     title={opportunity.title}
                     expectedYield={opportunity.expectedYield}
                     min={opportunity.min}
+                    src={opportunity.src}
                     type={opportunity.type}
                   />
                 </li>

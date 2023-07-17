@@ -14,12 +14,13 @@ import {
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function AssetCard({
-  title,
   description,
-  href,
-  type,
   expectedYield,
+  href,
   min,
+  title,
+  type,
+  src,
 }) {
   return (
     <Card className="overflow-hidden">
@@ -27,13 +28,9 @@ export default function AssetCard({
         floated={false}
         shadow={false}
         color="transparent"
-        className="m-0 rounded-none"
+        className="h-80 m-0 rounded-none"
       >
-        <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-          alt="img-blur-shadow"
-          layout="fill"
-        />
+        <img src={src} alt="img-blur-shadow" layout="fill" />
       </CardHeader>
       <CardBody>
         <Typography color="blue-gray" className="font-semibold mb-2 text-4xl">
