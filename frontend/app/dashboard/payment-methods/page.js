@@ -47,6 +47,15 @@ const STABLE_TABLE_ROWS = [
   {
     name: 'Binance USD (BUSD)',
   },
+  {
+    name: 'Dollar on Chain (DOC)',
+  },
+  {
+    name: 'RIF Dollar on Chain (RDOC)',
+  },
+  {
+    name: 'Babelfish (XUSD)',
+  },
 ]
 
 export default function Overview() {
