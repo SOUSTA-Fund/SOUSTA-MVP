@@ -83,8 +83,10 @@ export default function Nav() {
           </ListItem>
         </Link>
 
-        <Link href={routes.fiat}>
-          <ListItem className={`${pathname === routes.fiat && activeClass}`}>
+        <Link href={routes.paymentMethods}>
+          <ListItem
+            className={`${pathname === routes.paymentMethods && activeClass}`}
+          >
             <ListItemPrefix>
               <FontAwesomeIcon
                 className="text-yellow-700"
@@ -92,13 +94,13 @@ export default function Nav() {
                 icon={faDollarSign}
               />
             </ListItemPrefix>
-            Fiat
+            Payment Methods
           </ListItem>
         </Link>
 
-        <Link href={routes.transparency}>
+        <Link href={routes.reporting}>
           <ListItem
-            className={`${pathname === routes.transparency && activeClass}`}
+            className={`${pathname === routes.reporting && activeClass}`}
           >
             <ListItemPrefix>
               <FontAwesomeIcon
@@ -107,7 +109,7 @@ export default function Nav() {
                 icon={faPersonThroughWindow}
               />
             </ListItemPrefix>
-            Transparency
+            Reporting
           </ListItem>
         </Link>
 
