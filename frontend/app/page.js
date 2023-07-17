@@ -78,21 +78,22 @@ export default function Home() {
     <>
       <Nav />
 
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="relative flex flex-col place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-          <h1 className="font-bold mb-4 text-9xl">
-            SOUSTA
-            <br />
-            <span className="font-semibold italic text-8xl">
-              Asset Tokenization
-            </span>
-          </h1>
-          <h2 className="text-2xl">
-            Solving the Bitcoin productivity problem.
-          </h2>
+      <main className="flex min-h-screen flex-col items-center justify-between py-24">
+        <div className="grid grid-cols-2 relative pb-24 px-24">
+          <div>
+            <h1 className="font-bold leading-tight mb-4 text-5xl text-blue-900">
+              Bridging the gap between real-world assets and blockchain
+              technology
+            </h1>
+            <h2 className="text-lg text-blue-700">
+              We're not tech people. We're real estate people. We have
+              real-world experience with every asset we offer. And we know how
+              to properly set, and manage expectations for investors.
+            </h2>
+          </div>
         </div>
 
-        <section className="py-20">
+        <section className="bg-blue-900 px-24 py-20">
           <ul className="grid grid-cols-3 gap-6">
             <li>
               <Card
@@ -101,18 +102,15 @@ export default function Home() {
                 className="items-center text-center"
               >
                 <FontAwesomeIcon
-                  className="text-blue-900"
+                  className="text-blue-50"
                   style={{ height: 60, width: 60 }}
                   icon={faHouseLock}
                 />
                 <CardBody>
-                  <Typography
-                    color="blue-gray"
-                    className="font-semibold mb-2 text-2xl uppercase"
-                  >
+                  <Typography className="font-semibold mb-2 text-blue-50 text-2xl uppercase">
                     Asset Tokenization
                   </Typography>
-                  <Typography>
+                  <Typography className="text-blue-100">
                     The place is close to Barceloneta Beach and bus stop just 2
                     min by walk and near to &quot;Naviglio&quot; where you can
                     enjoy the main night life in Barcelona.
@@ -127,18 +125,15 @@ export default function Home() {
                 className="items-center text-center"
               >
                 <FontAwesomeIcon
-                  className="text-blue-900"
+                  className="text-blue-50"
                   style={{ height: 60, width: 60 }}
                   icon={faCoins}
                 />
                 <CardBody>
-                  <Typography
-                    color="blue-gray"
-                    className="font-semibold mb-2 text-2xl uppercase"
-                  >
+                  <Typography className="font-semibold mb-2 text-blue-50 text-2xl uppercase">
                     Fund Tokenization
                   </Typography>
-                  <Typography>
+                  <Typography className="text-blue-100">
                     The place is close to Barceloneta Beach and bus stop just 2
                     min by walk and near to &quot;Naviglio&quot; where you can
                     enjoy the main night life in Barcelona.
@@ -153,18 +148,15 @@ export default function Home() {
                 className="items-center text-center"
               >
                 <FontAwesomeIcon
-                  className="text-blue-900"
+                  className="text-blue-50"
                   style={{ height: 60, width: 60 }}
                   icon={faHandSparkles}
                 />
                 <CardBody>
-                  <Typography
-                    color="blue-gray"
-                    className="font-semibold mb-2 text-2xl uppercase"
-                  >
+                  <Typography className="font-semibold mb-2 text-blue-50 text-2xl uppercase">
                     Third-Party Tokenization
                   </Typography>
-                  <Typography>
+                  <Typography className="text-blue-100">
                     The place is close to Barceloneta Beach and bus stop just 2
                     min by walk and near to &quot;Naviglio&quot; where you can
                     enjoy the main night life in Barcelona.
@@ -175,12 +167,14 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="py-20">
+        <section className="px-24 py-20">
           <div className="mb-14">
-            <h2 className="mb-4 text-gray-600 text-sm uppercase">
+            <h2 className="mb-4 text-blue-700 text-sm uppercase">
               Investment Opportunities
             </h2>
-            <h3 className="font-semibold text-5xl">Featured Opportunities</h3>
+            <h3 className="font-semibold text-blue-900 text-5xl">
+              Featured Opportunities
+            </h3>
           </div>
           <ul className="grid grid-cols-2 gap-16">
             {opportunities.map((opportunity) => {
@@ -201,7 +195,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="mb-32 grid text-center px-24 lg:mb-0 lg:grid-cols-4 lg:text-left">
           <a
             href=""
             className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"

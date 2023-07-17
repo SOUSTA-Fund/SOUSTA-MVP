@@ -70,7 +70,7 @@ export default function Nav() {
   )
 
   return (
-    <Navbar className="bg-transparent border-none z-10 h-max max-w-full rounded-none shadow-none py-2 px-24">
+    <Navbar className="bg-white border-none z-10 h-max max-w-full rounded-none shadow-none py-2 px-24">
       <div className="flex items-center justify-between">
         <Link href={routes.home}>
           <div className="flex h-12 items-center relative w-60">

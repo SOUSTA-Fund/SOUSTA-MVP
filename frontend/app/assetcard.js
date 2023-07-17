@@ -33,26 +33,30 @@ export default function AssetCard({
         <img src={src} alt="img-blur-shadow" layout="fill" />
       </CardHeader>
       <CardBody>
-        <Typography color="blue-gray" className="font-semibold mb-2 text-4xl">
+        <Typography className="font-semibold mb-2 text-blue-900 text-4xl">
           {title}
         </Typography>
-        <Typography>{description}</Typography>
+        <Typography className="font-normal text-blue-700">
+          {description}
+        </Typography>
       </CardBody>
       <div className="border-t grid grid-cols-3 p-6">
         <div className="border-r flex flex-col items-center">
-          <Typography className="mb-4 text-sm uppercase">
+          <Typography className="font-semibold mb-4 text-sm uppercase">
             Type of Fund
           </Typography>
           <Typography className="font-normal text-xl">{type}</Typography>
         </div>
         <div className="flex flex-col items-center">
-          <Typography className="mb-4 text-sm uppercase">Yield</Typography>
+          <Typography className="font-semibold mb-4 text-sm uppercase">
+            Yield
+          </Typography>
           <Typography className="font-normal text-xl">
             {expectedYield}
           </Typography>
         </div>
         <div className="border-l flex flex-col items-center">
-          <Typography className="mb-4 text-sm uppercase">
+          <Typography className="font-semibold mb-4 text-sm uppercase">
             Minimum Subscription
           </Typography>
           <Typography className="font-normal text-xl">{min}</Typography>
