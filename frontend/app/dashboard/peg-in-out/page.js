@@ -17,8 +17,7 @@ export default function Overview() {
       <div
         className="absolute bg-contain bg-no-repeat h-8 left-0 top-0 w-40"
         style={{
-          backgroundImage:
-            'url("https://app.2wp.rootstock.io/img/logo-rootstock-black.325b665e.png")',
+          backgroundImage: 'url("/logo-rootstock.png")',
           backgroundPosition: 'left center',
         }}
       ></div>
