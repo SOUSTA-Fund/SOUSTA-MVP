@@ -1,8 +1,32 @@
 # SOUSTA Asset Tokenization
 
-This repository contains the contracts and frontend Dapp to demonstrate how a
-SOUSTA fund manager would deploy and interact with an asset token on the
-Rootstock test network.
+This repository contains the contracts and frontend Dapp to demonstrate how we
+as the SOUSTA fund managers will deploy and interact with an asset token on the
+Rootstock blockchain.
+
+[SOUSTA Dapp demo video]()
+
+## Landing Page
+
+It also contains a landing page highlighting four of our current investment
+opportunities. Which are real investments we at SOUSTA have experience with.
+
+![Landing Page Screenshot]()
+
+### Our Process
+
+The landing page also includes a link to the Our Process page. Which explains
+how we use AI in our evaluation of real estate investments.
+
+### Dashboard
+
+Access to the fund manager dashboard is handled with the rLogin service.
+
+It's currently only mock authentication. We plan to use the rLogin service to
+handle real authentication so dashboard access is restricted to fund managers
+only.
+
+---
 
 ## Quick start
 
@@ -84,10 +108,12 @@ To generate a test coverage report:
 yarn run coverage
 ```
 
+---
+
 ## Next.js Dapp
 
-The `frontend` directory has the Dapp to interact with the contracts, built
-using [Next.js](https://nextjs.org/).
+The `frontend` directory has the Dapp to interact with the contracts, along
+with the landing page, built using [Next.js](https://nextjs.org/).
 
 ### Running the Dapp
 
