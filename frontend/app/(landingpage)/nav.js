@@ -75,6 +75,7 @@ export default function Nav() {
         <Link href={routes.home}>
           <div className="flex h-12 items-center relative w-60">
             <Image
+              alt="SOUSTA Logo"
               className="absolute right-12"
               src={'/SOUSTA-Logo.svg'}
               width={240}

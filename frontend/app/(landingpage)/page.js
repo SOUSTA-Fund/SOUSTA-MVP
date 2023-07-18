@@ -90,6 +90,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center">
             <Image
+              alt="Asset Allocation Pie Chart"
               src={'/asset-allocation.png'}
               height={400}
               width={450}
@@ -99,7 +100,7 @@ export default function Home() {
 
         <section className="bg-blue-900 px-24 py-20">
           <ul className="grid grid-cols-3 gap-6">
-            <li>
+            <li key={1}>
               <Card
                 color="transparent"
                 shadow={false}
@@ -122,7 +123,7 @@ export default function Home() {
                 </CardBody>
               </Card>
             </li>
-            <li>
+            <li key={2}>
               <Card
                 color="transparent"
                 shadow={false}
@@ -145,7 +146,7 @@ export default function Home() {
                 </CardBody>
               </Card>
             </li>
-            <li>
+            <li key={3}>
               <Card
                 color="transparent"
                 shadow={false}
@@ -181,9 +182,9 @@ export default function Home() {
             </h3>
           </div>
           <ul className="grid grid-cols-2 gap-16">
-            {opportunities.map((opportunity) => {
+            {opportunities.map((opportunity, key) => {
               return (
-                <li>
+                <li key={key}>
                   <AssetCard
                     description={opportunity.description}
                     href={opportunity.href}

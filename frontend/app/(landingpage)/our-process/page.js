@@ -22,7 +22,7 @@ export default function OurProcess() {
             potential growth multiplier:
           </p>
           <ol className="flex flex-col gap-4 list-decimal pl-8">
-            <li>
+            <li key={1}>
               <span className="font-semibold">
                 Assessing Market Conditions (1-350 points):
               </span>{' '}
@@ -30,21 +30,21 @@ export default function OurProcess() {
               demographic trends, and the balance of supply and demand in a
               given market.
             </li>
-            <li>
+            <li key={2}>
               <span className="font-semibold">
                 Analyzing Property Specifics (1-350 points):
               </span>{' '}
               Encompasses evaluating the cash flow potential of the property,
               its physical condition, and location-specific factors.
             </li>
-            <li>
+            <li key={3}>
               <span className="font-semibold">
                 Evaluating Financial Metrics (1-300 points):
               </span>{' '}
               Consists of reviewing the capitalization rate, cash on cash
               return, and debt service coverage ratio.
             </li>
-            <li>
+            <li key={4}>
               <span className="font-semibold">
                 Growth Potential (Multiplier: 1-100):
               </span>{' '}

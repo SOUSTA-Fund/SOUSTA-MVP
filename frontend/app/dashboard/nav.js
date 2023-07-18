@@ -34,6 +34,7 @@ export default function Nav() {
       <div className="mb-2 p-4">
         <div className="flex h-12 items-center relative w-48">
           <Image
+            alt="SOUSTA Logo"
             className="absolute right-10"
             src={'/SOUSTA-Logo.svg'}
             width={240}
