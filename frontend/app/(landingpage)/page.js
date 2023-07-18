@@ -77,7 +77,7 @@ export default function Home() {
     <>
       <main className="flex flex-col items-center justify-between">
         <div className="grid grid-cols-2 relative p-24">
-          <div>
+          <div className="flex flex-col justify-center">
             <h1 className="font-bold leading-tight mb-4 text-5xl text-blue-900">
               Bridging the gap between real-world assets and blockchain
               technology
@@ -87,6 +87,13 @@ export default function Home() {
               real-world experience with every asset we offer. And we know how
               to properly set, and manage expectations for investors.
             </h2>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              src={'/asset-allocation.png'}
+              height={400}
+              width={450}
+            ></Image>
           </div>
         </div>
 
