@@ -1,20 +1,37 @@
 'use client'
 
+import Link from 'next/link'
+import routes from '../routes'
 import { Typography } from '@material-tailwind/react'
 
 export default function Footer() {
   const SITEMAP = [
     {
       title: 'Company',
-      links: ['Our Process', 'Invest', 'Products', 'About Us'],
+      links: [
+        { title: 'Our Process', href: routes.ourProcess },
+        { title: 'Invest', href: routes.invest },
+        { title: 'Products', href: routes.products },
+        { title: 'About Us', href: routes.aboutUs },
+      ],
     },
     {
       title: 'Resources',
-      links: ['FAQ', 'Education', 'Governance', 'Reporting'],
+      links: [
+        { title: 'FAQ', href: '' },
+        { title: 'Education', href: routes.education },
+        { title: 'Governance', href: routes.governance },
+        { title: 'Reporting', href: '' },
+      ],
     },
     {
       title: 'Featured Opportunities',
-      links: ['Carried Interest', 'Whiskey', 'Aymoré Hotel', 'The Meadows'],
+      links: [
+        { title: 'Carried Interest', href: '' },
+        { title: 'Whiskey', href: '' },
+        { title: 'Aymoré Hotel', href: '' },
+        { title: 'The Meadows', href: '' },
+      ],
     },
   ]
 
@@ -41,12 +58,12 @@ export default function Footer() {
                     color="white"
                     className="font-normal"
                   >
-                    <a
-                      href="#"
+                    <Link
+                      href={link.href}
                       className="inline-block py-1 pr-2 transition-transform hover:scale-105"
                     >
-                      {link}
-                    </a>
+                      {link.title}
+                    </Link>
                   </Typography>
                 ))}
               </ul>
