@@ -6,6 +6,8 @@ Rootstock blockchain.
 
 [SOUSTA Dapp demo video]()
 
+[SOUSTA pitch deck]()
+
 ## Landing Page
 
 It also contains a landing page highlighting four of our current investment
