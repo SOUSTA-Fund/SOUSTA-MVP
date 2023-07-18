@@ -1,6 +1,8 @@
 const routes = {
   aboutUs: '/about-us',
   education: '/education',
+  faq: '/faq',
+  governance: '/governance',
   home: '/',
   invest: '/invest',
   mint: '/dashboard/mint',
