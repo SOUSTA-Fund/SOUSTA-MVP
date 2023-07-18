@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {
   Button,
+  Collapse,
   IconButton,
-  MobileNav,
   Navbar,
   Typography,
 } from '@material-tailwind/react'
@@ -94,7 +94,7 @@ export default function Nav() {
           </Button>
           <IconButton
             variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="ml-auto h-6 w-6 text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
@@ -131,12 +131,12 @@ export default function Nav() {
           </IconButton>
         </div>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         {navList}
         <Button variant="gradient" size="sm" fullWidth className="mb-2">
           <span>Investor Login</span>
         </Button>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   )
 }
