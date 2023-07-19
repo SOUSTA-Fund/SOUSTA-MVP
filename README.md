@@ -4,9 +4,11 @@ This repository contains the contracts and frontend Dapp to demonstrate how we
 as the SOUSTA fund managers will deploy and interact with an asset token on the
 Rootstock blockchain.
 
-[SOUSTA Dapp demo video]()
+[SOUSTA Dapp demo video](https://www.loom.com/share/2bc733b7e0ff4e2d90806d058ff7864a?sid=8663320f-1b20-4900-ae02-a3ece5bf7e95)
 
 [SOUSTA pitch deck]()
+
+[SOUSTA executive summary]()
 
 ## Landing Page
 
