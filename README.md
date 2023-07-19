@@ -38,7 +38,7 @@ The first things you need to do are cloning this repository and installing its
 dependencies:
 
 ```sh
-git clone https://github.com/gp22/SOUSTA-MVP.git
+git clone https://github.com/gp22/bitcoin-scaling-hackathon.git
 cd SOUSTA-MVP
 yarn install
 ```

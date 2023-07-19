@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NomicFoundation/hardhat-boilerplate.git"
+    "url": "git+https://github.com/gp22/bitcoin-scaling-hackathon.git"
   },
   "author": "Paul Garcia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NomicFoundation/hardhat-boilerplate/issues"
+    "url": "https://github.com/gp22/bitcoin-scaling-hackathon/issues"
   },
-  "homepage": "https://github.com/NomicFoundation/hardhat-boilerplate#readme",
+  "homepage": "https://github.com/gp22/bitcoin-scaling-hackathon#readme",
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
